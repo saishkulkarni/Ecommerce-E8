@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+	<h1>Home Page</h1>
+<div class="message">
+		<h3 th:text="${session.fail}"></h3>
+		<h4 th:text="${session.pass}"></h4>
+		<th:block th:text="${@myService.removeMessage()}"></th:block>
+	</div>
+
+	<a href="/customer-signup"><button>Signup</button></a>
+	<a href="/customer-login"><button>Login</button></a>
+</body>
+</html>
