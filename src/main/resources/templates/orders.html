@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Orders</title>
+</head>
+<body>
+	<div align="center">
+		<table border="1">
+			<tr>
+				<th>Order Id</th>
+				<th>Payment Id</th>
+				<th>Items</th>
+				<th>Price</th>
+				<th>Time</th>
+				<th>Status</th>
+			</tr>
+			
+			<tr th:each="order:${orders}">
+				<th th:text="${order.orderId}"></th>
+				<th th:text="${order.paymentId}"></th>
+				<th></th>
+				<th th:text="${order.price}"></th>
+				<th th:text="${order.timeStamp}"></th>
+				<th th:if="${order.status}">Payment Done</th>
+				<th th:if="${!order.status}">Cancelled</th>
+			</tr>
+			
+
+		</table>
+
+		<br> <a href="/customer-home"><button>Back</button></a>
+	</div>
+</body>
+</html>

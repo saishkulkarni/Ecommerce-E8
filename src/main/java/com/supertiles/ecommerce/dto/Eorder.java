@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,11 +21,10 @@ public class Eorder {
 	int id;
 	String orderId;
 	String paymentId;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	List<Item> items;
 	double price;
 	@CreationTimestamp
 	LocalDateTime timeStamp;
 	boolean status;
-
 }

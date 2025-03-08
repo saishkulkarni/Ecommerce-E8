@@ -27,8 +27,8 @@ public class MainController {
 	MyService service;
 
 	@GetMapping("/")
-	public String loadHome() {
-		return "home.html";
+	public String loadHome(ModelMap map) {
+		return service.loadHome(map);
 	}
 
 	@GetMapping("/customer-signup")
@@ -164,14 +164,19 @@ public class MainController {
 	public String decrease(@PathVariable int id, HttpSession session) {
 		return service.decrease(id, session);
 	}
-	
+
 	@GetMapping("/proceed")
-	public String proceedPayment(HttpSession session,ModelMap map) throws RazorpayException {
-		return service.payment(session,map);
+	public String proceedPayment(HttpSession session, ModelMap map) throws RazorpayException {
+		return service.payment(session, map);
 	}
-	
+
 	@PostMapping("/payment-done/{id}")
-	public String paymentDone(HttpSession session,@PathVariable int id,@RequestParam String razorpay_payment_id) {
-		return service.paymentDone(session,razorpay_payment_id,id);
+	public String paymentDone(HttpSession session, @PathVariable int id, @RequestParam String razorpay_payment_id) {
+		return service.paymentDone(session, razorpay_payment_id, id);
+	}
+
+	@GetMapping("/view-orders")
+	public String viewOrders(HttpSession session, ModelMap map) {
+		return service.viewOrders(session, map);
 	}
 }

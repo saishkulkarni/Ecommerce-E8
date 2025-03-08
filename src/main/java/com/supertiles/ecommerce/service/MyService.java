@@ -454,6 +454,10 @@ public class MyService {
 				customerRepository.save(customer);
 
 				itemRepository.deleteById(id);
+				
+				product.setStock(product.getStock() + 1);
+				productRepository.save(product);
+				
 				session.setAttribute("pass", "Decremented Success");
 				session.setAttribute("customer", customerRepository.findById(customer.getId()).orElseThrow());
 				return "redirect:/view-cart";
@@ -508,9 +512,15 @@ public class MyService {
 		if (session.getAttribute("customer") != null) {
 			Customer customer = (Customer) session.getAttribute("customer");
 			Eorder eorder = eorderRepository.findById(id).orElseThrow();
+			
 			eorder.setStatus(true);
 			eorder.setPaymentId(razorpay_payment_id);
+			
+			System.out.println(eorder.getPaymentId());
+			System.out.println(eorder.isStatus());
+			
 			eorderRepository.save(eorder);
+			
 			customer.getCart().getItems().clear();
 			customerRepository.save(customer);
 			session.setAttribute("pass", "Order Placed");
@@ -521,6 +531,32 @@ public class MyService {
 			session.setAttribute("fail", "Invalid Session");
 			return "redirect:/customer-login";
 		}
+	}
+
+	public String viewOrders(HttpSession session, ModelMap map) {
+		if (session.getAttribute("customer") != null) {
+			Customer customer = (Customer) session.getAttribute("customer");
+			List<Eorder> orders = customer.getEorders();
+			if (orders.isEmpty()) {
+				session.setAttribute("fail", "No Orders Yet");
+				return "redirect:/customer-home";
+			} else {
+				map.put("orders", orders);
+				return "orders.html";
+			}
+		} else {
+			session.setAttribute("fail", "Invalid Session");
+			return "redirect:/customer-login";
+		}
+	}
+
+	public String loadHome(ModelMap map) {
+		List<Product> list = productRepository.findAll();
+		
+		if (!list.isEmpty()) 
+		map.put("list", list);
+
+		return "home.html";
 	}
 
 }

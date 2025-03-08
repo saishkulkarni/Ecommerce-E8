@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+            .error-container {
+                background-color: white;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                max-width: 600px;
+                width: 90%;
+            }
+            h1 {
+                color: #e74c3c;
+                margin-bottom: 1.5rem;
+            }
+            .error-details {
+                text-align: left;
+                margin: 1.5rem 0;
+            }
+            .error-details p {
+                margin: 0.5rem 0;
+                color: #333;
+            }
+            .error-details span {
+                color: #666;
+                margin-left: 0.5rem;
+            }
+            .home-link {
+                display: inline-block;
+                padding: 0.8rem 1.5rem;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+            .home-link:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    
+</head>
+<body>
+    <div class="error-container">
+        <h1>Oops! Something went wrong</h1>
+        <div class="error-details">
+            <p>We're sorry, but an error occurred while processing your request.</p>
+        </div>
+        <a href="/" class="home-link">Return to Home</a>
+    </div>
+</body>
+</html>
